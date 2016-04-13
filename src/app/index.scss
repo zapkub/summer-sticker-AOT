@@ -2,124 +2,210 @@
    sass dependencies when defined in the bower.json of your dependencies */
 // bower:scss
 // endbower
-
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
   color: #000;
   padding: 0.2em 0;
 }
-
+.fb-button-gradient {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3096c9+1,056b9e+100 */
+  background: #3096c9;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #3096c9 1%, #056b9e 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #3096c9 1%,#056b9e 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #3096c9 1%,#056b9e 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr= '#3096c9', endColorstr='#056b9e',GradientType=0 );
+  /* IE6-9 */
+}
 body {
   margin: 0;
-}
+  padding: 0;
+  font-family: 'Sukhumvit Set','Thonburi','Tahoma',serif !important;
+  .app-container {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f67435+1,ca157c+100 */
+    background: #f67435;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #f67435 1%, #ca157c 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #f67435 1%,#ca157c 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #f67435 1%,#ca157c 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=  '#f67435', endColorstr='#ca157c',GradientType=0 );
+    /* IE6-9 */
+    min-height: 100vh;
+    width: 100%;
+    height:auto;
+    display: flex;
+    align-items: stretch;
+    .app-wrap {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background-blend-mode: multiply;
 
+      .container {
+        max-width: 950px;
+        flex: 1 0 auto;
+        margin: 0 auto;
+        padding-bottom:80px;
+        width: 100%;
+        background: url('../assets/images/background-decor.png') center center no-repeat;
+        background-size: cover;
+      }
+      h1 {
+        margin: 0;
+      }
+    }
+  }
+}
+header {
+  padding:20px 10px;
+  width: 100%;
+  .header-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    .logo {
+      img {
+        width: 150px;
+      }
+    }
+    .loading-container{
+      color: white;
+      flex: 0 0 200px;
+      display: flex;
+      justify-content:center;
+      align-items: center;
+      align-content: flex-end;
+      flex-direction: column;
+      p{
+        margin: 0;
+      }
+    }
+    .user-container {
+      flex: 1 0 auto;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      img {
+        width:55px;
+        border: 3px solid #ff9900;
+      }
+      .user-detail {
+        margin-left:15px;
+        color: white;
+        h2 {
+          margin: 0;
+          font-weight: normal;
+          font-size: 24px;
+          line-height: 1.1;
+        }
+        p {
+          margin: 0;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+#main {
+  .login-container {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 10px 30px;
+    .login-button {
+      @extend .fb-button-gradient;
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 5px 15px;
+      border-radius: 10px;
+      font-family: 'Sukhumvit Set','Thonburi','Tahoma',serif !important;
+      font-weight: 500;
+      box-shadow: 6px 6px 0 rgba(0,0,0,0.4);
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%,0);
+      display: flex;
+      align-items: stretch;
+      cursor: pointer;
+      .text {
+        padding: 0 10px;
+        border-right: 1px solid #006699;
+      }
+      i {
+        padding-left: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .main-title {
+      position: relative;
+      .decor {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%,-80px);
+      }
+    }
+  }
+  .footer-info {
+    flex: 0 0 auto;
+    padding: 10px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    .wrap {
+      max-width: 950px;
+      width: 100%;
+      padding: 20px 30px;
+      display: flex;
+      .item {
+        display: flex;
+        align-items: flex-start;
+        h2 {
+          color: #666699;
+          margin: 5px 0;
+        }
+        .thumbnail {
+          background: white;
+          border-radius: 50%;
+          position: relative;
+          padding: 30px 10px 10px;
+          flex: 0 0 60px;
+          transform: translateY(-40px);
+          height: 0;
+          img {
+            width: 100%;
+          }
+        }
+        .description {
+          padding: 0 20px;
+          .online-logo {
+            position: absolute;
+            transform: translateX(10px);
+          }
+        }
+      }
+    }
+  }
+}
 a {
   text-decoration: none;
 }
-
-.container {
-  width: 1170px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
+*:focus {
+  outline: none;
 }
-
-.navbar {
-  position: relative;
-  min-height: 50px;
-  margin-bottom: 20px;
-  background-color: #222;
-
-  &>a {
-    float: left;
-    color: lightgrey;
-    padding: 15px 15px;
-    font-size: 18px;
-    line-height: 20px;
-    height: 50px;
-  }
-
-  ul {
-    float: left;
-    padding: 0;
-    margin: 0;
-
-    li {
-      float: left;
-      position: relative;
-      display: block;
-
-      a {
-        color: white;
-        position: relative;
-        display: block;
-        padding: 15px;
-        line-height: 20px;
-      }
-      &.active a {
-        background-color: black;
-      }
-    }
-  }
-}
-
-.jumbotron {
-  padding: 60px;
-  margin-bottom: 30px;
-  background-color: gainsboro;
-  border-radius: 6px;
-  text-align: center;
-}
-
-.btn {
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  border: 1px solid transparent;
-  color: white;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 6px;
-}
-
-.col {
-  float: left;
-  width: 33.33%;
-  position: relative;
-  padding-left: 15px;
-  padding-right: 15px;
-  box-sizing: border-box;
-
-  .thumbnail {
-    height: 200px;
-    border: 1px solid lightgrey;
-    border-radius: 4px;
-    margin-bottom: 20px;
-
-    .caption {
-      padding: 9px;
-    }
-
-    img.pull-right {
-      width: 50px;
-    }
-  }
-}
-
-.pull-right {
-  float: right;
-}
-
-hr {
-  clear: both;
-}
-
 /* Do not remove the comments below. It's the markers used by gulp-inject to inject
    all your sass files automatically */
 // injector

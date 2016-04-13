@@ -1,0 +1,31 @@
+<div class="app-wrap" id="sticker">
+  <div class="container">
+    <header data-loading="ctrl.uiState.loading">
+
+    </header>
+    {{ctrl.user}}
+    <div ui-view>
+
+    </div>
+    <div class="step-container">
+      <div class="step-guide">
+        <span class="index">
+          {{ctrl.getStep().index+1}}
+        </span>
+        <span class="guide">
+          {{ctrl.getStep().name}}
+        </span>
+      </div>
+      <div class="step-list">
+        <div class="description">
+          ขั้นตอนที่ {{ctrl.getStep().index+1}} จาก {{ctrl.stepData.length}}
+        </div>
+        <div class="panel">
+          <div class="step" ng-click="ctrl.goToStep($index)" ng-repeat="step in ctrl.stepData">
+            {{$index}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,32 +1,72 @@
+export function UserDataService (){
+  this.data =  {};
+  this.gender = 'male';
+}
 export class MainController {
-  constructor ($timeout, webDevTec, toastr) {
+  constructor ($timeout, toastr,Facebook,$state,$user,_,$stateParams) {
     'ngInject';
-
-    this.awesomeThings = [];
-    this.classAnimation = '';
-    this.creationDate = 1460478138243;
-    this.toastr = toastr;
-
-    this.activate($timeout, webDevTec);
+    this._ = _;
+    this.user = $user;
+    this.fb = Facebook;
+    this.state = $state;
+    this.params = $stateParams;
+    this.uiState = { loggedIn : false ,loading:false };
+    this.init();
   }
+  init(){
+    this.getFacebookSession(
+      (res)=>{
+        if(res.status === 'connected'){
+          this.state.go('gender.select')
+        }else{
 
-  activate($timeout, webDevTec) {
-    this.getWebDevTec(webDevTec);
-    $timeout(() => {
-      this.classAnimation = 'rubberBand';
-    }, 4000);
+        }
+      }
+    );
   }
+  getFacebookSession (callback){
+    this.uiState.loading = true;
+    this.fb.getLoginStatus((res)=>{
+      this.uiState.loading = false;
+      if(res.status === 'connected'){
+        this.uiState.loggedIn = true;
+        if(callback){
+          callback(res);
+        }
+      }else{
+        this.uiState.loggedIn = false;
+        if(this.state.$current.name != 'home'){
+          this.state.go('home')
+        }
+        if(callback)
+          callback(res)
+      }
+    })
+  }
+  loginWithFacebook(){
+      this.fb.login((res)=>{
+        this.getFacebookSession((res)=>{
+          if(res.status === 'connected'){
+            this.state.go('gender.select')
+          }else{
 
-  getWebDevTec(webDevTec) {
-    this.awesomeThings = webDevTec.getTec();
-
-    angular.forEach(this.awesomeThings, (awesomeThing) => {
-      awesomeThing.rank = Math.random();
+          }
+        });
+      });
+  }
+  getUserProfile(){
+    this.uiState.loading = true;
+    this.fb.api('/me',(res)=>{
+      this.uiState.loading = false;
+      if(res.id){
+          this.user.data = res;
+          this.user.profilePicture = `http://graph.facebook.com/100000616414605/picture?type=square`
+      }
     });
   }
 
   showToastr() {
     this.toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-    this.classAnimation = '';
+
   }
 }

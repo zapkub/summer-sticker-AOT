@@ -1,0 +1,11 @@
+.theme-container{
+  display: flex;
+  flex-direction: column;
+  .theme-list {
+    display: flex;
+    justify-content: space-around;
+  }
+  .decor{
+    height:200px;
+  }
+}

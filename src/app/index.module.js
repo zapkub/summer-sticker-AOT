@@ -1,22 +1,22 @@
 /* global malarkey:false, moment:false */
 
 import { config } from './index.config';
+import  _  from 'lodash';
 import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
-import { MainController } from './main/main.controller';
-import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
-import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
-import { NavbarDirective } from '../app/components/navbar/navbar.directive';
-import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
-
-angular.module('summerStickerWebapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'toastr'])
-  .constant('malarkey', malarkey)
+import { MainController,UserDataService } from './main/main.controller';
+import { StickerController , GenderSelectController ,ThemeSelectController , UploaderController} from './sticker/sticker.controller';
+import { HeaderDirective } from './components/header.directive';
+angular.module('summerStickerWebapp', ['facebook','ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'toastr'])
   .constant('moment', moment)
   .config(config)
+  .constant('_',_)
   .config(routerConfig)
   .run(runBlock)
-  .service('githubContributor', GithubContributorService)
-  .service('webDevTec', WebDevTecService)
+  .service('$user',UserDataService)
+  .directive('header',HeaderDirective)
   .controller('MainController', MainController)
-  .directive('acmeNavbar', NavbarDirective)
-  .directive('acmeMalarkey', MalarkeyDirective);
+  .controller('StickerController',StickerController)
+  .controller('GenderSelectController',GenderSelectController)
+  .controller('ThemeSelectController',ThemeSelectController)
+  .controller('UploaderController',UploaderController)

@@ -1,0 +1,19 @@
+.gender-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  .choice-container{
+    width: 100%;
+    justify-content:center;
+    display: flex;
+    .choice{
+      color: white;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      padding:30px;
+    }
+  }
+}

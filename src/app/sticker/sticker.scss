@@ -1,0 +1,51 @@
+#sticker{
+  .step-container{
+    .step-guide{
+      display: flex;
+      justify-content: center;
+      font-size:34px;
+      color:white;
+      border-top:2px white solid;
+      border-bottom:2px white solid;
+      padding:10px 0;
+      .index{
+        border-radius: 50%;
+        width:50px;
+        height: 50px;
+        background: #ff9900;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .guide{
+        font-weight: bold;
+        margin-left:10px;
+      }
+    }
+    .step-list{
+      padding:10px 0;
+      .description{
+        font-size:22px;
+        font-weight: bold;
+        color:white;
+        text-align: center;
+      }
+      .panel{
+        display: flex;
+        justify-content: center;
+        .step{
+          border-radius: 50%;
+          width:50px;
+          height: 50px;
+          background: #ff9900;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color:white;
+          font-size:22px;
+          margin:0 10px;
+        }
+      }
+    }
+  }
+}

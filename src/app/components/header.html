@@ -1,0 +1,24 @@
+<div class="header-container">
+  <div class="logo">
+    <img src="assets/images/main-logo.png" alt=""/>
+  </div>
+  <div class="loading-container" ng-if="loading">
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+    <p>
+        Connecting with Facebook
+    </p>
+
+  </div>
+  <div class="user-container" ng-if="!loading">
+    <img ng-src="{{user.profilePicture}}" alt=""/>
+    <div class="user-detail">
+      <h2>{{user.data.name}}</h2>
+      <p>
+        is making sticker!
+      </p>
+    </div>
+  </div>
+</div>
