@@ -7,7 +7,7 @@ import { runBlock } from './index.run';
 import { MainController,UserDataService } from './main/main.controller';
 import { StickerController , GenderSelectController ,ThemeSelectController , UploaderController} from './sticker/sticker.controller';
 import { HeaderDirective } from './components/header.directive';
-angular.module('summerStickerWebapp', ['facebook','ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'toastr'])
+angular.module('summerStickerWebapp', ['facebook','ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'toastr','ngFileUpload'])
   .constant('moment', moment)
   .config(config)
   .constant('_',_)

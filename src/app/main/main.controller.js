@@ -1,70 +1,81 @@
-export function UserDataService (){
-  this.data =  {};
-  this.gender = 'male';
+export function UserDataService() {
+  this.data = {};
+  this.gender;
+  this.uploadedImage;
 }
 export class MainController {
-  constructor ($timeout, toastr,Facebook,$state,$user,_,$stateParams) {
+  constructor($scope,$timeout, toastr, Facebook, $state, $user, _, $stateParams) {
     'ngInject';
+    this.scope = $scope;
     this._ = _;
     this.user = $user;
     this.fb = Facebook;
     this.state = $state;
     this.params = $stateParams;
-    this.uiState = { loggedIn : false ,loading:false };
+    this.uiState = {
+      loggedIn: false,
+      loading: false
+    };
     this.init();
   }
-  init(){
+  init() {
     this.getFacebookSession(
-      (res)=>{
-        if(res.status === 'connected'){
+      (res) => {
+        if (res.status === 'connected') {
           this.state.go('gender.select')
-        }else{
+        } else {
 
         }
       }
     );
   }
-  getFacebookSession (callback){
+  getFacebookSession(callback) {
     this.uiState.loading = true;
-    this.fb.getLoginStatus((res)=>{
+    this.fb.getLoginStatus((res) => {
       this.uiState.loading = false;
-      if(res.status === 'connected'){
+      if (res.status === 'connected') {
         this.uiState.loggedIn = true;
-        if(callback){
+        if (callback) {
           callback(res);
         }
-      }else{
+      } else {
         this.uiState.loggedIn = false;
-        if(this.state.$current.name != 'home'){
+        if (this.state.$current.name != 'home') {
           this.state.go('home')
         }
-        if(callback)
+        if (callback)
           callback(res)
       }
     })
   }
-  loginWithFacebook(){
-      this.fb.login((res)=>{
-        this.getFacebookSession((res)=>{
-          if(res.status === 'connected'){
-            this.state.go('gender.select')
-          }else{
+  loginWithFacebook() {
+    this.fb.login((res) => {
+      this.getFacebookSession((res) => {
+        if (res.status === 'connected') {
+          this.state.go('gender.select')
+        } else {
 
-          }
-        });
+        }
       });
+    });
   }
-  getUserProfile(){
+  getUserProfile() {
     this.uiState.loading = true;
-    this.fb.api('/me',(res)=>{
+    this.fb.api('/me', (res) => {
       this.uiState.loading = false;
-      if(res.id){
-          this.user.data = res;
-          this.user.profilePicture = `http://graph.facebook.com/100000616414605/picture?type=square`
+      if (res.id) {
+        this.user.data = res;
+        this.user.profilePicture = `http://graph.facebook.com/${res.id}/picture?type=square`
       }
     });
   }
-
+  checkUserData() {
+    if (!this.user.gender) {
+      this.state.go('gender.select')
+    } else if (!this.user.type) {
+      this.state.go('gender.theme')
+    }
+  }
   showToastr() {
     this.toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
 

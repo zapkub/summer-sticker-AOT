@@ -1,3 +1,78 @@
 <div class="uploader-container">
-  
+  <div class="theme">
+    <div ng-click="ctrl.goToStep(1)" class="back-to-theme-selected button">
+      เปลี่ยน<br>sticker
+    </div>
+    <img id="selectedTheme" ng-src="assets/images/result/{{ctrl.user.gender}}-{{ctrl.user.type}}.png" alt=""/>
+    <div class="description-label">
+      sticker ที่คุณเลือก
+    </div>
+  </div>
+  <form class="uploader" name="upload">
+    <div id="user-picture">
+
+    </div>
+    <img class="mock" src="assets/images/result/uploader-mask-icon.png" alt=""/>
+    <div class="description-label">
+      รูปที่คุณอัพโหลด
+    </div>
+    <div ng-show="!ctrl.user.uploadedImage">
+      <div class="button upload-file" ngf-select="uploader.uploadFile($file)" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 500}">
+        อัพโหลด<br>รูปของคุณ
+      </div>
+      <div class="button camera" ng-click="uploader.uploadWebcam()">
+        ถ่ายด้วย<br>webcam
+      </div>
+    </div>
+    <div class="" ng-show="ctrl.user.uploadedImage">
+      <div class="button get-result">
+        ตกลง<br>ใช้รูปนี้
+      </div>
+      <div class="button reset" ng-click="uploader.reset()">
+        เริ่มใหม่
+      </div>
+    </div>
+  </form>
+
+  <div class="mask-container" ng-class="{pop:uploader.uiState.showUploadPicture}">
+    <div class="">
+      ปรับแต่งหน้าของคุณให้พอดีกรอบ
+    </div>
+    <div class="button done" ng-click="uploader.prepareResult()">
+      ตกลง
+    </div>
+    <div class="button try-again">
+      เปลี่ยนภาพ
+    </div>
+
+    <div class="adjust-container" >
+      <canvas id="mask-canvas" width="500" height="500"></canvas>
+      <div ng-mousedown="uploader.startAdjustPostition($event)" ng-mousemove="uploader.adjustPosition($event)" ng-mouseup="uploader.endAdjustPosition()" ng-mouseleave="uploader.endAdjustPosition()" class="mask-image">
+
+      </div>
+      <div class="zoom-slider" ng-show="!uploader.uiState.adjusting">
+        <i class="fa fa-minus"></i>
+        <input type="range" ng-model="zoom" min="50" max="100" class="slider" name="name">
+        <i class="fa fa-plus"></i>
+      </div>
+
+    </div>
+
+    <div class="webcam-container" ng-show="uploader.uiState.showWebcam">
+      <div class="viewer-container">
+        <div class="viewer" id="webcam" style="width:640px;height:480px;">
+
+        </div>
+      </div>
+      <div class="mask-image">
+
+      </div>
+      <div class="capture" ng-click="uploader.captureImageFromWebcam()">
+
+      </div>
+    </div>
+
+
+  </div>
+
 </div>
