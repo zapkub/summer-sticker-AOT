@@ -1,0 +1,44 @@
+<div class="app-wrap">
+  <div class="background">
+
+  </div>
+  <div class="container">
+    <div class="logo">
+      <img src="assets/images/main-logo.png" alt=""/>
+    </div>
+    <div class="shared">
+      <img src="{{'assets/images/result/bubble.png'}}" class="bubble" alt="" />
+      <div class="wrap">
+        <a ui-sref="process.gender">
+          <div class="button">
+            ทำเพิ่ม
+          </div>
+        </a>
+
+        <div class="thankyou">
+          ขอบคุณมาก
+        </div>
+        <div class="user">
+          <div class="profile-picture">
+            <img ng-src="{{ctrl.user.profilePicture}}" alt="" />
+          </div>
+          <div class="text">
+            <h2>
+              {{ctrl.user.getName()}}
+            </h2>
+            <p>
+              sticker ของคุณได้ถูกแชร์ <br>
+              ไปเรียบร้อยแล้ว
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ads">
+      <img ng-src="{{'assets/images/result/bottom-ads.png'}}" alt="" />
+    </div>
+
+  </div>
+</div>

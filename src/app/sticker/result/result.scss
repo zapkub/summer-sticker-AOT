@@ -1,0 +1,176 @@
+.confirm {
+  .shareDialog{
+    position: fixed;
+    width:600px;
+    height:auto;
+    display: flex;
+    transform:translate(-50%,-50%) scale(0);
+    pointer-events: none;
+    top:50%;
+    left:50%;
+    background: white;
+    .wrap{
+      padding: 10px;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    textarea{
+      border: 1px lightgrey solid;
+      background: white;
+      border-radius: 5px;
+      width:500px;
+      height:100px;
+      padding: 10px;
+      font-size:20px;
+    }
+    .share-button{
+      background: #3399cc;
+      width: auto;
+      display: inline-block;
+      padding:5px 25px;
+      color: white;
+      border-radius: 3px;
+      margin:10px;
+      cursor: pointer;
+    }
+    &.pop{
+      pointer-events: all;
+      transform:translate(-50%,-50%) scale(1);
+    }
+  }
+  .result-container
+  {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    .result{
+      position: relative;
+      width:450px;
+      height:450px;
+      #canvas{
+        width:450px;
+        height:450px;
+      }
+    }
+    .mock{
+      width:100%;
+      height:100%;
+      position: absolute;
+      top:0;
+      left:0;
+    }
+  }
+
+  .adjustment{
+    width:300px;
+    margin:0 auto;
+  }
+  .button{
+    color: #660099;
+    font-size:15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    font-weight: bold;
+    line-height: 1;
+    border-radius: 50%;
+    background: white;
+    border:6px solid #ff9900;
+    position: absolute;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+    &.back{
+      position: relative;
+      margin:20px;
+      align-self: center;
+    }
+    &.share{
+      background:#3399cc;
+      color:white;
+      width:150px;
+      height:150px;
+      line-height: 1.5;
+      position: relative;
+      border:none;
+    }
+  }
+}
+
+
+.shared {
+  color:white;
+  text-shadow: 10px 10px 0 rgba(0,0,0,0.3);
+  font-weight: bold;
+  font-style: italic;
+  display: flex;
+  margin-top:-80px;
+  position: relative;
+  .bubble{
+    position: absolute;
+    top:0;
+  }
+  .wrap{
+    width:auto;
+    display:block;
+    position: relative;
+    transform: rotate(-5deg);
+    margin:auto;
+    padding:0 0 50px 0px;
+    .button{
+      color: #660099;
+      font-size:22px;
+      text-shadow: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 80px;
+      height: 80px;
+      font-weight: bold;
+      line-height: 1;
+      border-radius: 50%;
+      background: white;
+      border:6px solid #ff9900;
+      position: absolute;
+      cursor: pointer;
+      box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+      bottom:0;
+      right:0;
+    }
+  }
+  .thankyou{
+    font-size:78px;
+    padding-left: 20px;
+  }
+  .user{
+    display: flex;
+    align-items: center;
+    h2{
+      font-size:68px;
+      margin:0;
+    }
+    p{
+      margin:0;
+      font-size:38px;
+      text-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+    }
+    .profile-picture{
+      margin:0 10px;
+      border: 3px solid #ff9900;
+      width:200px;
+      height:200px;
+      background:lightgrey;
+      line-height: 0;
+      img{
+        width:100%;
+      }
+    }
+  }
+
+}

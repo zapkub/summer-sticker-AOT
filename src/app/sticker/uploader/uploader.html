@@ -3,6 +3,10 @@
     <div ng-click="ctrl.goToStep(1)" class="back-to-theme-selected button">
       เปลี่ยน<br>sticker
     </div>
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
     <img id="selectedTheme" ng-src="assets/images/result/{{ctrl.user.gender}}-{{ctrl.user.type}}.png" alt=""/>
     <div class="description-label">
       sticker ที่คุณเลือก
@@ -25,9 +29,11 @@
       </div>
     </div>
     <div class="" ng-show="ctrl.user.uploadedImage">
-      <div class="button get-result">
-        ตกลง<br>ใช้รูปนี้
-      </div>
+      <a ui-sref="process.confirm">
+        <div class="button get-result">
+          ตกลง<br>ใช้รูปนี้
+        </div>
+      </a>
       <div class="button reset" ng-click="uploader.reset()">
         เริ่มใหม่
       </div>

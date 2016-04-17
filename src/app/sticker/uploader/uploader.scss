@@ -13,6 +13,7 @@
     padding:1px 15px;
     bottom: 0;
     left:50%;
+    z-index: 3;
     white-space: nowrap;
     transform: translate(-50%,50%) rotate(-4deg);
   }
@@ -32,9 +33,12 @@
     border:6px solid #ff9900;
     position: absolute;
     cursor: pointer;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+
     &.back-to-theme-selected{
       top:50%;
       left:0;
+      z-index: 3;
       transform: translate(-50%,-50%);
     }
     &.upload-file{
@@ -75,9 +79,21 @@
   }
   .theme {
     position: relative;
-    padding:0 20px;
+    margin:0 20px;
+    background: lightgrey;
+    height:250px;
+    .spinner{
+      position: absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%,-50%);
+      z-index: 1;
+    }
     img{
       width:250px;
+      position: relative;
+      z-index: 2;
+      background: black;
     }
   }
   .uploader{
@@ -115,6 +131,7 @@
   transform: translate(-50%,-50%);
   pointer-events: none;
   opacity: 0;
+  z-index: 99;
   &.pop{
     pointer-events: all;
     opacity: 1;

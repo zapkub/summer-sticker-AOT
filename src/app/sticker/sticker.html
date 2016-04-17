@@ -1,4 +1,7 @@
 <div class="app-wrap" id="sticker">
+  <div class="background">
+
+  </div>
   <div class="container">
     <header data-loading="ctrl.uiState.loading">
 
@@ -20,13 +23,13 @@
           ขั้นตอนที่ {{ctrl.getStep().index+1}} จาก {{ctrl.stepData.length}}
         </div>
         <div class="panel">
-          <div class="step" ng-click="ctrl.goToStep($index)" ng-repeat="step in ctrl.stepData">
-            {{$index}}
+          <div class="step" ng-click="ctrl.goToStep($index)" ng-class="{disable:ctrl.getStep().index < $index}" ng-repeat="step in ctrl.stepData">
+            {{$index + 1}}
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  {{ctrl.user}}
+  <!-- {{ctrl.user}} -->
 </div>

@@ -1,0 +1,44 @@
+<div class="confirm">
+  <div class="result-container">
+    <a ui-sref="process.theme">
+      <div class="button back">
+        เปลี่ยนภาพ
+      </div>
+    </a>
+    <div class="result">
+      <p ng-if="!result.uiState.showResult">
+        กำลังทำงาน...
+      </p>
+      <canvas id="canvas" width="500" height="500" ng-class={drawing:result.uiState.showResult}></canvas>
+      <!-- <img class="mock" ng-src="{{'assets/images/result/' + result.sticker.fileName}}"> -->
+    </div>
+    <div class="button share" ng-click="result.shareToFB()">
+      แชร์ sticker นี้
+      <br>
+      ไปยัง Facebook
+      <br>
+      ของคุณ
+    </div>
+  </div>
+  <div class="shareDialog" ng-class={pop:result.uiState.shareDialog}>
+    <div class="wrap">
+      <h2>แชร์ภาพไปที่ FB</h2>
+      <textarea ng-model="result.uiState.caption" placeholder="ใส่ข้อความที่ต้องการแชร์"></textarea>
+      <div class="">
+        <div class="share-button" ng-click="result.sendImageToFB()">
+          แชร์
+        </div>
+        <div class="share-button" ng-click="result.uiState.shareDialog = false">
+          ยกเลิก
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- <div class="adjustment">
+    <label for="">
+      Brightness
+      <input type="range" min="-30" max="30" ng-model="brightness" id="brightness" name="brightness" value="1">
+    </label>
+  </div> -->
+</div>

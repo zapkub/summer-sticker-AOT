@@ -7,18 +7,19 @@ export class StickerController extends MainController {
     this.stepData = [{
       id: 1,
       name: 'เลือกเพศของคุณ',
-      state: 'gender.select'
+      state: 'process.gender'
     }, {
       id: 2,
       name: 'เลือก sticker',
-      state: 'gender.theme'
+      state: 'process.theme'
     }, {
       id: 3,
       name: 'อัพโหลดภาพใบหน้าของคุณ',
-      state: 'gender.uploader'
+      state: 'process.uploader'
     }, {
       id: 4,
-      name: 'แชร์กันเลย'
+      name: 'แชร์กันเลย',
+      state:'process.confirm'
     }]
     this.getFacebookSession(() => {
       this.getUserProfile();
@@ -48,7 +49,7 @@ export class GenderSelectController extends MainController {
   }
   selectGender(gender) {
     this.user.gender = gender;
-    this.state.go('gender.theme')
+    this.state.go('process.theme')
   }
 }
 export class ThemeSelectController extends MainController {
@@ -62,7 +63,7 @@ export class ThemeSelectController extends MainController {
   }
   selectTheme(type) {
     this.user.type = type;
-    this.state.go('gender.uploader', {
+    this.state.go('process.uploader', {
       gender: this.user.gender,
       type: this.user.type
     })
@@ -84,7 +85,7 @@ export class UploaderController extends MainController {
     }
     this.uiState.showUploadPicture = false;
     this.checkUserData();
-    this.demoImage();
+    // this.demoImage();
     this.scope.zoom = 50;
     this.scope.$watch('zoom', () => {
       this.draw();
@@ -114,20 +115,32 @@ export class UploaderController extends MainController {
     Webcam.attach('#webcam');
   }
   captureImageFromWebcam() {
-    this.uiState.showWebcam = false;
+
 
     Webcam.snap((dataUri, canvas, context) => {
       // this.uiState.flipImage = true;
       this.prepareImage(dataUri);
-      Webcam.reset()
+      Webcam.reset();
+      this.uiState.showWebcam = false;
     })
   }
   reset(){
     delete this.user.uploadedImage;
     angular.element('#user-picture').empty();
   }
+
+  goToResult(){
+    this.state.go('process.confirm');
+  }
+
+/* uploader part */
+
   demoImage() {
-    this.prepareImage('https://z-1-scontent.xx.fbcdn.net/v/t1.0-9/10369713_757735057590368_4288220530290263457_n.jpg?oh=50621fcaba6586240dace505a9f7b868&oe=57BCAEC3')
+    this.user.uploadedImage = new Image();
+    this.user.uploadedImage.setAttribute('crossOrigin', 'anonymous');
+    this.user.uploadedImage.src  = 'https://z-1-scontent.xx.fbcdn.net/v/t1.0-9/10369713_757735057590368_4288220530290263457_n.jpg?oh=50621fcaba6586240dace505a9f7b868&oe=57BCAEC3';
+    angular.element('#user-picture').append(this.user.uploadedImage);
+    // this.prepareImage('')
   }
   startAdjustPostition($event) {
     this.uiState.adjusting = true;
@@ -178,6 +191,9 @@ export class UploaderController extends MainController {
 
   draw() {
     var canvas = angular.element('#mask-canvas')[0];
+    canvas.width = 960;
+    canvas.height = 960;
+    canvas.style.width = "500px";
     var context = canvas.getContext('2d');
     if (this.userImage) {
 
@@ -215,17 +231,17 @@ export class UploaderController extends MainController {
     angular.element('#user-picture').empty();
     angular.element('#user-picture').append(this.user.uploadedImage);
   }
-  processResult(){
-      let canvas = angular.element('#mask-canvas')[0];
-      let context = canvas.getContext('2d');
-      let userImage = new Image;
-      let themeImage = angular.element('#selectedTheme')[0];
-      userImage.onload = ()=>{
-          context.clearRect(0,0,canvas.width,canvas.height);
-          context.drawImage(userImage,0,0);
-          context.drawImage(themeImage,0,0,500,500);
-
-      }
-      userImage.src = canvas.toDataURL();
-  }
+  // processResult(){
+  //     let canvas = angular.element('#mask-canvas')[0];
+  //     let context = canvas.getContext('2d');
+  //     let userImage = new Image;
+  //     let themeImage = angular.element('#selectedTheme')[0];
+  //     userImage.onload = ()=>{
+  //         context.clearRect(0,0,canvas.width,canvas.height);
+  //         context.drawImage(userImage,0,0);
+  //         context.drawImage(themeImage,0,0,500,500);
+  //
+  //     }
+  //     userImage.src = canvas.toDataURL();
+  // }
 }

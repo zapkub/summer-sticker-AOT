@@ -46,16 +46,29 @@ body {
       width: 100%;
       display: flex;
       flex-direction: column;
-      background-blend-mode: multiply;
-
+      .background{
+        position: fixed;
+        z-index: 0;
+        width: 100%;
+        max-width: 950px;
+        height: 100%;
+        top:0;
+        opacity: 0.68;
+        left:50%;
+        transform: translate(-50%,0);
+        background: url('../assets/images/background-decor.png') center center no-repeat;
+        background-blend-mode: soft-light;
+        background-size: cover;
+      }
       .container {
         max-width: 950px;
+        position: relative;
         flex: 1 0 auto;
         margin: 0 auto;
-        padding-bottom:80px;
+        padding:10px 30px 80px 30px;
         width: 100%;
-        background: url('../assets/images/background-decor.png') center center no-repeat;
-        background-size: cover;
+        z-index: 2;
+
       }
       h1 {
         margin: 0;
@@ -64,7 +77,7 @@ body {
   }
 }
 header {
-  padding:20px 10px;
+  padding:20px 10px 0 10px;
   width: 100%;
   .header-container {
     display: flex;
@@ -94,6 +107,7 @@ header {
       align-items: center;
       img {
         width:55px;
+        height:55px;
         border: 3px solid #ff9900;
       }
       .user-detail {
