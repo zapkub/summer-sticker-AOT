@@ -3,7 +3,7 @@ export default {
     a: {
       fileName: 'male-a.png',
       maskPos:{
-        x:195,
+        x:185,
         y:200
       },
       scale:1.3

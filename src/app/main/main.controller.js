@@ -25,6 +25,7 @@ export class MainController {
     'ngInject';
     this.scope = $scope;
     this._ = _;
+    this.timeout  = $timeout;
     this.user = $user;
     this.fb = Facebook;
     this.state = $state;

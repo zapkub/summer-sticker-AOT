@@ -9,7 +9,7 @@ export class ResultController extends StickerController {
 }
 export class ResultConfirmController extends StickerController {
   init() {
-    this.dev = false;
+    this.dev = true;
     this.caman = Caman;
     this.scope.brightness = 1;
     if (this.dev) {
@@ -92,8 +92,9 @@ export class ResultConfirmController extends StickerController {
 
   }
   sendImageToFB(){
+    this.uiState.sharing = true;
       PostImageToFacebook(this.user.token,this.uiState.caption,function(done){
-
+        this.uiState.sharing = false;
         this.uiState.shareDialog = false;
         if(done){
           this.state.go("thankyou")
@@ -132,7 +133,7 @@ function PostImageToFacebook(authToken,caption,callback) {
   var fd = new FormData();
   fd.append("access_token", authToken);
   fd.append("source", blob);
-  fd.append("message", caption);
+  fd.append("message", caption + '\n ทำสติกเกอร์หน้ามันส์ๆ คลายร้อนแบบนี้ได้ที่นี่ \nhttp://svmedia.biz/songkran/ \n#sawasdeethailand #sawasdeesticker');
   try {
     $.ajax({
       url: "https://graph.facebook.com/me/photos?access_token=" + authToken,

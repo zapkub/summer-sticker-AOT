@@ -20,7 +20,8 @@
     "angular-facebook": "~0.2.3",
     "webcamjs": "~1.0.6",
     "ng-file-upload": "~12.0.4",
-    "caman": "~4.1.2"
+    "caman": "~4.1.2",
+    "csshake": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.3"

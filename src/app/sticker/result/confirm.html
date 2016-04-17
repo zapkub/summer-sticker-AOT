@@ -9,10 +9,16 @@
       <p ng-if="!result.uiState.showResult">
         กำลังทำงาน...
       </p>
-      <canvas id="canvas" width="500" height="500" ng-class={drawing:result.uiState.showResult}></canvas>
+      <div class="ready-to-share-label">
+        พร้อมโชว์
+      </div>
+      <canvas id="canvas" width="500" height="500" ng-class={drawing:!result.uiState.showResult}></canvas>
       <!-- <img class="mock" ng-src="{{'assets/images/result/' + result.sticker.fileName}}"> -->
     </div>
+
+    <img class="decor" src="assets/images/result/share-button-decor.png" alt="" />
     <div class="button share" ng-click="result.shareToFB()">
+      <i class="fa fa-facebook" aria-hidden="true"></i>
       แชร์ sticker นี้
       <br>
       ไปยัง Facebook

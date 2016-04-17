@@ -1,10 +1,10 @@
 <div class="theme-container">
   <div class="theme-list">
-    <div class="" ng-repeat="type in ['a','b','c']" ng-click="theme.selectTheme(type)">
+    <div class="theme-item" ng-repeat="type in ['a','b','c']" ng-click="theme.selectTheme(type)">
       <img ng-src="assets/images/theme-select/{{ctrl.user.gender}}-{{type}}.png" alt="" />
     </div>
   </div>
-  <div class="decor">
+  <div class="decor  fadeInUp animated">
     <img ng-src="assets/images/theme-select/bottom-ads.png" alt="" />
   </div>
 </div>

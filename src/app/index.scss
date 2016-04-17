@@ -39,6 +39,7 @@ body {
     /* IE6-9 */
     min-height: 100vh;
     width: 100%;
+    min-width:1024px;
     height:auto;
     display: flex;
     align-items: stretch;
@@ -179,6 +180,8 @@ header {
     display: flex;
     justify-content: center;
     align-items: stretch;
+    position: relative;
+    z-index: 99;
     .wrap {
       max-width: 950px;
       width: 100%;

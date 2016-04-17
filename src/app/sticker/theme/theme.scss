@@ -4,6 +4,14 @@
   .theme-list {
     display: flex;
     justify-content: space-around;
+    .theme-item{
+      transition: 0.22s all;
+      opacity: 0.5;
+      cursor: pointer;
+      &:hover{
+        opacity: 1;
+      }
+    }
   }
   .decor{
     height:200px;

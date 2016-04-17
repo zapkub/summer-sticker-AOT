@@ -86,7 +86,7 @@ export class UploaderController extends MainController {
     this.uiState.showUploadPicture = false;
     this.checkUserData();
     // this.demoImage();
-    this.scope.zoom = 50;
+    this.scope.zoom = 55;
     this.scope.$watch('zoom', () => {
       this.draw();
     })
@@ -112,17 +112,19 @@ export class UploaderController extends MainController {
     Webcam.set({flip_horiz:true})
     this.uiState.showWebcam = true;
     this.uiState.showUploadPicture = true;
-    Webcam.attach('#webcam');
+    this.timeout(()=>{
+      Webcam.attach('#webcam');
+    },1000)
   }
   captureImageFromWebcam() {
-
-
-    Webcam.snap((dataUri, canvas, context) => {
+    let that = this;
+    Webcam.snap(function(dataUri, canvas, context){
       // this.uiState.flipImage = true;
-      this.prepareImage(dataUri);
+      that.prepareImage(dataUri);
       Webcam.reset();
-      this.uiState.showWebcam = false;
-    })
+      that.uiState.showWebcam = false;
+      this.scope.$applyAsync();
+    }.bind(this))
   }
   reset(){
     delete this.user.uploadedImage;
@@ -159,11 +161,11 @@ export class UploaderController extends MainController {
       let deltaX = this.uiState.dragPosition.x - x;
       let deltaY = this.uiState.dragPosition.y - y;
       if(this.uiState.flipImage){
-        this.uiState.imagePosition.x -= deltaX;
-      }else{
         this.uiState.imagePosition.x += deltaX;
+      }else{
+        this.uiState.imagePosition.x -= deltaX;
       }
-      this.uiState.imagePosition.y += deltaY;
+      this.uiState.imagePosition.y -= deltaY;
       this.uiState.dragPosition = {
         x: $event.offsetX,
         y: $event.offsetY
@@ -177,12 +179,12 @@ export class UploaderController extends MainController {
   }
   prepareImage(url) {
     var img = new Image();
-    img.setAttribute('crossOrigin', 'anonymous');
+    // img.setAttribute('crossOrigin', 'anonymous');
     img.onload = () => {
       this.userImage = img;
       this.uiState.imagePosition = {
-        x: this.userImage.width /2 - 480/2,
-        y: this.userImage.height /2 - 480/2,
+        x: 0,//960/2 - this.userImage.width /2 ,
+        y: 0//this.userImage.height /2 - 960/2,
       }
       this.draw();
     }
@@ -193,7 +195,7 @@ export class UploaderController extends MainController {
     var canvas = angular.element('#mask-canvas')[0];
     canvas.width = 960;
     canvas.height = 960;
-    canvas.style.width = "500px";
+    canvas.style.width = "480px";
     var context = canvas.getContext('2d');
     if (this.userImage) {
 
@@ -204,20 +206,35 @@ export class UploaderController extends MainController {
         imageWidth = this.userImage.height;
       }
 
-      var srcWidth = imageWidth / (this.scope.zoom / 50);
+      var srcWidth = imageWidth * (this.scope.zoom / 20);
       var srcHeight = srcWidth;
-      var deltaX = srcWidth - imageWidth;
+      var deltaX = imageWidth - srcWidth ;
 
       //clear context
       context.fillStyle = 'black';
       context.fillRect(0, 0, canvas.width, canvas.height);
       //draw Upload images
       context.save();
+      let srcX = this.uiState.imagePosition.x
+      let srcY = this.uiState.imagePosition.y
+      // if(srcX<1){
+      //   srcX = 1;
+      // }
+      // if(srcY<1){
+      //   srcY = 1;
+      // }
+      // if(srcWidth > this.userImage.width){
+      //   srcWidth = this.userImage.width
+      // }
+      // if(srcHeight > this.userImage.height){
+      //   srcHeight = this.userImage.hegiht;
+      // }
       if(this.uiState.flipImage){
         context.scale(-1,1);
         context.drawImage(this.userImage, (this.uiState.imagePosition.x) - deltaX / 2, this.uiState.imagePosition.y - deltaX / 2, srcWidth, srcHeight, -500, 0, canvas.width, canvas.height);
       }else{
-        context.drawImage(this.userImage, this.uiState.imagePosition.x - deltaX / 2, this.uiState.imagePosition.y - deltaX / 2, srcWidth, srcHeight, 0, 0, canvas.width, canvas.height);
+
+        context.drawImage(this.userImage, 0, 0, this.userImage.width, this.userImage.height, srcX, srcY, srcWidth, this.userImage.height/this.userImage.width * srcWidth);
       }
       context.restore();
     }

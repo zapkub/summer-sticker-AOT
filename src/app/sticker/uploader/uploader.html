@@ -1,5 +1,8 @@
 <div class="uploader-container">
-  <div class="theme">
+  <div class="wrap" ng-show="!uploader.uiState.showUploadPicture">
+
+
+  <div class="theme  bounceIn animated">
     <div ng-click="ctrl.goToStep(1)" class="back-to-theme-selected button">
       เปลี่ยน<br>sticker
     </div>
@@ -7,7 +10,7 @@
       <div class="double-bounce1"></div>
       <div class="double-bounce2"></div>
     </div>
-    <img id="selectedTheme" ng-src="assets/images/result/{{ctrl.user.gender}}-{{ctrl.user.type}}.png" alt=""/>
+    <img id="selectedTheme" class="" ng-src="assets/images/result/{{ctrl.user.gender}}-{{ctrl.user.type}}.png" alt=""/>
     <div class="description-label">
       sticker ที่คุณเลือก
     </div>
@@ -16,7 +19,7 @@
     <div id="user-picture">
 
     </div>
-    <img class="mock" src="assets/images/result/uploader-mask-icon.png" alt=""/>
+    <img class="mock fadeIn animated" src="assets/images/result/uploader-mask-icon.png" alt=""/>
     <div class="description-label">
       รูปที่คุณอัพโหลด
     </div>
@@ -39,40 +42,48 @@
       </div>
     </div>
   </form>
+  </div>
+  <div class="mask-container" ng-show="uploader.uiState.showUploadPicture" ng-class="{pop:uploader.uiState.showUploadPicture}">
+    <div class="" ng-if="!uploader.uiState.showWebcam">
+      <div class="button done" ng-click="uploader.prepareResult()">
+        ตกลง
+      </div>
+      <div class="button try-again">
+        เปลี่ยนภาพ
+      </div>
+    </div>
 
-  <div class="mask-container" ng-class="{pop:uploader.uiState.showUploadPicture}">
-    <div class="">
-      ปรับแต่งหน้าของคุณให้พอดีกรอบ
-    </div>
-    <div class="button done" ng-click="uploader.prepareResult()">
-      ตกลง
-    </div>
-    <div class="button try-again">
-      เปลี่ยนภาพ
-    </div>
 
-    <div class="adjust-container" >
-      <canvas id="mask-canvas" width="500" height="500"></canvas>
+    <div class="adjust-container" ng-show="!uploader.uiState.showWebcam">
+      <div class="guide-title" style="z-index:2;position:relative;">
+        <i class="fa fa-arrows" aria-hidden="true"></i>
+        ปรับแต่งหน้าของคุณให้พอดีกรอบ
+      </div>
+      <canvas id="mask-canvas" width="500" height="500" style="width:480px;height:480px;"></canvas>
       <div ng-mousedown="uploader.startAdjustPostition($event)" ng-mousemove="uploader.adjustPosition($event)" ng-mouseup="uploader.endAdjustPosition()" ng-mouseleave="uploader.endAdjustPosition()" class="mask-image">
 
       </div>
       <div class="zoom-slider" ng-show="!uploader.uiState.adjusting">
         <i class="fa fa-minus"></i>
-        <input type="range" ng-model="zoom" min="50" max="100" class="slider" name="name">
+        <input type="range" ng-model="zoom" min="30" max="100" class="slider"  name="name">
         <i class="fa fa-plus"></i>
       </div>
 
     </div>
 
     <div class="webcam-container" ng-show="uploader.uiState.showWebcam">
+      <div class="guide-title">
+        <i class="fa fa-camera" aria-hidden="true"></i>
+        กดปุ่มสีแดงเพื่อจับภาพ
+      </div>
       <div class="viewer-container">
         <div class="viewer" id="webcam" style="width:640px;height:480px;">
 
         </div>
       </div>
-      <div class="mask-image">
+      <!-- <div class="mask-image">
 
-      </div>
+      </div> -->
       <div class="capture" ng-click="uploader.captureImageFromWebcam()">
 
       </div>
