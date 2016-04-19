@@ -9,7 +9,7 @@ export class ResultController extends StickerController {
 }
 export class ResultConfirmController extends StickerController {
   init() {
-    this.dev = true;
+    this.dev = false;
     this.caman = Caman;
     this.scope.brightness = 1;
     if (this.dev) {

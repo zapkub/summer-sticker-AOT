@@ -16,7 +16,7 @@
       <!-- <img class="mock" ng-src="{{'assets/images/result/' + result.sticker.fileName}}"> -->
     </div>
 
-    <img class="decor" src="assets/images/result/share-button-decor.png" alt="" />
+    <img class="decor" src="assets/images/result/share-button-decor.png" alt=""/>
     <div class="button share" ng-click="result.shareToFB()">
       <i class="fa fa-facebook" aria-hidden="true"></i>
       แชร์ sticker นี้
@@ -47,4 +47,16 @@
       <input type="range" min="-30" max="30" ng-model="brightness" id="brightness" name="brightness" value="1">
     </label>
   </div> -->
+</div>
+
+<div class="sharing-dialog" ng-if=" result.uiState.sharing">
+  <div class="wrap">
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+    <p>
+      กำลังแชร์
+    </p>
+  </div>
 </div>
