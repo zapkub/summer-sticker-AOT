@@ -21,9 +21,11 @@ export function UserDataService() {
   }
 }
 export class MainController {
-  constructor($scope,$timeout, toastr, Facebook, $state, $user, _, $stateParams,$http) {
+  constructor($scope,$timeout, toastr, Facebook, $state, $user, _, $stateParams,$http,$log) {
     'ngInject';
+    
     this.scope = $scope;
+    this.log = $log.log;
     this._ = _;
     this.timeout  = $timeout;
     this.user = $user;

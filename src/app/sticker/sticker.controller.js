@@ -145,6 +145,12 @@ export class UploaderController extends MainController {
     // this.prepareImage('')
   }
   startAdjustPostition($event) {
+    let e = $event || window.event;
+
+    var target = e.target || e.srcElement,
+        rect = target.getBoundingClientRect();
+    $event.offsetX = e.clientX - rect.left,
+    $event.offsetY = e.clientY - rect.top;
     this.uiState.adjusting = true;
     this.uiState.dragPosition = {
       x: $event.offsetX,
@@ -154,12 +160,21 @@ export class UploaderController extends MainController {
   }
   adjustPosition($event) {
     if (this.uiState.adjusting) {
+      let e = $event || window.event;
 
+      var target = e.target || e.srcElement,
+          rect = target.getBoundingClientRect();
+      $event.offsetX = e.clientX - rect.left,
+      $event.offsetY = e.clientY - rect.top;
+
+      // console.log($event.offsetX)
       let x = $event.offsetX;
       let y = $event.offsetY;
 
       let deltaX = this.uiState.dragPosition.x - x;
       let deltaY = this.uiState.dragPosition.y - y;
+
+
       if(this.uiState.flipImage){
         this.uiState.imagePosition.x += deltaX;
       }else{
@@ -229,6 +244,9 @@ export class UploaderController extends MainController {
       // if(srcHeight > this.userImage.height){
       //   srcHeight = this.userImage.hegiht;
       // }
+
+      // console.log(`src: ${srcX} ${srcY} width: ${this.userImage.width} ${this.userImage.height} ${srcWidth}`);
+
       if(this.uiState.flipImage){
         context.scale(-1,1);
         context.drawImage(this.userImage, (this.uiState.imagePosition.x) - deltaX / 2, this.uiState.imagePosition.y - deltaX / 2, srcWidth, srcHeight, -500, 0, canvas.width, canvas.height);

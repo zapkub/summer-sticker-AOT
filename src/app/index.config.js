@@ -1,7 +1,7 @@
 export function config ($logProvider, toastrConfig,FacebookProvider) {
   'ngInject';
   // Enable log
-  $logProvider.debugEnabled(true);
+  $logProvider.debugEnabled(false);
   let dev = false;
   if(dev){
     FacebookProvider.init('222857661436956')
